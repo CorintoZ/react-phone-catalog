@@ -28,11 +28,8 @@ function PhoneForm(props) {
     screen: '',
     processor: '',
     ram: '',
-    image: '',
+    phoneImage: '',
   });
-  // if (props.phoneDetails) {
-  //   this.setState = { ...props.phoneDetails };
-  // }
 
   function handleChange(e) {
     const value = e.target.value;

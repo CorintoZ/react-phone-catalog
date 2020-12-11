@@ -51,10 +51,7 @@ function PhoneDetails(props) {
           <p>Screen: {screen}</p>
           <p>Processor: {processor}</p>
           <p>Ram: {ram}</p>
-          <div>
-            <span>Available colors:</span>
-            <div className={`'circle-'${color}`}></div>
-          </div>
+          <p>Available colors: {color}</p>
           <div>
             <span>{price}</span>
           </div>

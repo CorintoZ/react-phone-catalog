@@ -41,7 +41,7 @@ export const addPhone = (phone) => async (
     .child(phone.phoneImage.name)
     .getDownloadURL();
   const firestore = getFirestore();
-  firestore
+  await firestore
     .collection('phones')
     .add({ ...phone, phoneImage: downloadURL })
     .then((res) => {
@@ -64,7 +64,7 @@ export const deletePhone = (phoneId) => async (
   { getFirestore }
 ) => {
   const firestore = getFirestore();
-  firestore
+  await firestore
     .collection('phones')
     .doc(phoneId)
     .delete()
@@ -98,12 +98,15 @@ export const editPhone = (phone) => async (
       .ref('images/')
       .child(phone.phoneImage.name)
       .getDownloadURL();
+
+    options = { ...phone, phoneImage: downloadURL };
   }
 
   const firestore = getFirestore();
-  firestore
+  await firestore
     .collection('phones')
-    .edit({ ...phone })
+    .doc(phone.id)
+    .set(options)
     .then((res) => {
       dispatch({
         type: EDIT_PHONE_SUCCESS,
